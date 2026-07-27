@@ -19,7 +19,23 @@ def add_entry():
     with open("journal.json", "w") as f:
         json.dump(entries, f)
 
-add_entry()
+def read_entries():
+    with open ("journal.json",  "r")  as f:
+        entries = json.load(f)
+    for entry in entries:
+        print(entry["text"])
 
 
+choice = input ("add or read ?  ")
+if choice == "add":
+    add_entry()
+else :
+    read_entries()
+
+
+
+
+
+
+ 
 
