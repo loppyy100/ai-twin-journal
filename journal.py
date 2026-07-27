@@ -6,18 +6,18 @@ from datetime import date
 
 def add_entry():
     text = input("What happened today? ")
-    entry = {"date": str(date.today()), "text": text    }
+    entry = {"date": str(date.today()), "text": text }
 
     if os.path.exists("journal.json"):
-        with open("journal.json", "r") as f:
+        with open("journal.json", "r", encoding="utf-8") as f:
             entries = json.load(f)
     else:
         entries = []
 
     entries.append(entry)
 
-    with open("journal.json", "w") as f:
-        json.dump(entries, f)
+    with open("journal.json", "w", encoding="utf-8") as f:
+        json.dump(entries, f, ensure_ascii=False, indent=2)
 
 add_entry()
 
