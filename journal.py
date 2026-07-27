@@ -9,15 +9,15 @@ def add_entry():
     entry = {"date": str(date.today()), "text": text }
 
     if os.path.exists("journal.json"):
-        with open("journal.json", "r", encoding="utf-8") as f:
+        with open("journal.json", "r") as f:
             entries = json.load(f)
     else:
         entries = []
 
     entries.append(entry)
 
-    with open("journal.json", "w", encoding="utf-8") as f:
-        json.dump(entries, f, ensure_ascii=False, indent=2)
+    with open("journal.json", "w") as f:
+        json.dump(entries, f)
 
 add_entry()
 
