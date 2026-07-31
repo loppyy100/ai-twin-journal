@@ -19,6 +19,8 @@ def add_entry():
     with open("journal.json", "w") as f:
         json.dump(entries, f)
 
+
+
 def read_entries():
     with open ("journal.json",  "r")  as f:
         entries = json.load(f)
@@ -26,16 +28,28 @@ def read_entries():
         print(entry["text"])
 
 
-choice = input ("add or read ?  ")
+
+def read_by_date():
+    wanted = input(" which date  ?   (yyyy-mm-dd)  ")
+
+    with open("journal.json", "r") as f :
+        entries = json.load(f)
+
+        found = False
+        for entry in entries :
+            if entry.get("date") == wanted:
+                print(entry["text"])
+                found = True
+        if not found:
+                print("no entry for this date")
+
+
+
+choice = input ("add   read   or   date ?  ")
 if choice == "add":
     add_entry()
+elif choice == "date":
+    read_by_date()
 else :
     read_entries()
-
-
-
-
-
-
- 
 
