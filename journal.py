@@ -36,20 +36,20 @@ def read_by_date():
         entries = json.load(f)
 
         found = False
-        for entry in entries :
+        for entry in entries :                                                       
             if entry.get("date") == wanted:
                 print(entry["text"])
                 found = True
         if not found:
-                print("no entry for this date")
+            print("no entry for this date")
 
 
-
-choice = input ("add   read   or   date ?  ")
+choice = input ("add read  or date ?  ")
 if choice == "add":
     add_entry()
+elif choice == "read":
+    read_entries()
 elif choice == "date":
     read_by_date()
-else :
-    read_entries()
-
+else:
+    print("unknown command — type add, read, or date")
