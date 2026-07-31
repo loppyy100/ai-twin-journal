@@ -1,7 +1,7 @@
-
 import json
 import os
 from datetime import date
+import ollama
 
 
 def add_entry():
@@ -36,7 +36,7 @@ def read_by_date():
         entries = json.load(f)
 
         found = False
-        for entry in entries :                                                       
+        for entry in entries :
             if entry.get("date") == wanted:
                 print(entry["text"])
                 found = True
@@ -44,12 +44,39 @@ def read_by_date():
             print("no entry for this date")
 
 
-choice = input ("add read  or date ?  ")
+
+def chat_with_twin():
+    # 1. read all the journal entries
+    with open("journal.json", "r") as f:
+        entries = json.load(f)
+
+    # 2. glue them into one text block the model can read
+    journal_text = ""
+    for entry in entries:
+        journal_text += entry.get("date", "no date") + ": " + entry["text"] + "\n"
+
+    # 3. ask what you want to know
+    question = input("Ask your twin about your life: ")
+
+    # 4. send the journal + question to Qwen and print the answer
+    response = ollama.chat(
+        model="qwen2.5:3b",
+        messages=[
+            {"role": "system", "content": "You are Tobi's personal AI twin. Here is his journal:\n" + journal_text},
+            {"role": "user", "content": question},
+        ]
+    )
+    print(response["message"]["content"])
+
+
+choice = input ("add read date or chat ?  ")
 if choice == "add":
     add_entry()
 elif choice == "read":
     read_entries()
 elif choice == "date":
     read_by_date()
+elif choice == "chat":
+    chat_with_twin()
 else:
-    print("unknown command — type add, read, or date")
+    print("unknown command — type add, read, date, or chat")
