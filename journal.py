@@ -70,7 +70,23 @@ def chat_with_twin():
     print(response["message"]["content"])
 
 
-choice = input ("add  read  date or  chat ?  ")
+
+def search_entries ():
+    word = input(" what are you searching for ?       ")
+
+    with open("journal.json", "r") as f:
+     entries = json.load(f)
+
+    found = False
+    for entry in entries:
+        if word.lower() in entry["text"].lower():
+            print(entry["date"] + ": " + entry["text"])
+            found = True
+    if not found:
+        print("no entries found for this search term")
+
+
+choice = input ("add  read  date  chat   or   search?  ")
 if choice == "add":
     add_entry()
 elif choice == "read":
@@ -79,6 +95,8 @@ elif choice == "date":
     read_by_date()
 elif choice == "chat":
     chat_with_twin()
+elif choice == "search":
+    search_entries()
 else:
     print("unknown command — type add, read, or date")
 
