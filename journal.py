@@ -2,7 +2,7 @@
 import json
 import os
 from datetime import date
-import ollama                          # the "phone" to talk to the model
+import ollama
 
 
 def add_entry():
@@ -14,6 +14,7 @@ def add_entry():
             entries = json.load(f)
     else:
         entries = []
+
 
     entries.append(entry)
 
