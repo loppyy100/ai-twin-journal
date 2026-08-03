@@ -1,4 +1,3 @@
-
 import json
 import os
 from datetime import date
@@ -86,17 +85,22 @@ def search_entries ():
         print("no entries found for this search term")
 
 
-choice = input ("add  read  date  chat   or   search?  ")
-if choice == "add":
-    add_entry()
-elif choice == "read":
-    read_entries()
-elif choice == "date":
-    read_by_date()
-elif choice == "chat":
-    chat_with_twin()
-elif choice == "search":
-    search_entries()
-else:
-    print("unknown command — type add, read, or date")
 
+
+while True:
+    choice = input("add  read  date  chat  search  or  quit?  ")
+    if choice == "add":
+        add_entry()
+    elif choice == "read":
+        read_entries()
+    elif choice == "date":
+        read_by_date()
+    elif choice == "chat":
+        chat_with_twin()
+    elif choice == "search":
+        search_entries()
+    elif choice == "quit":
+        print("bye Tobi!  have a great day!")
+        break
+    else:
+        print("unknown command — try again")
