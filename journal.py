@@ -23,9 +23,16 @@ def add_entry():
 
 
 def read_entries():
+ try:
     with open ("journal.json",  "r")  as f:
         entries = json.load(f)
-    for entry in entries:
+ except FileNotFoundError:
+    print(" no journal entries yet , do you want to add")
+    return
+ except json.JSONDecodeError:
+    print(" journal file is corrupted , do you want to fix it ?")
+    return
+ for entry in entries:
         print(entry["text"])
 
 
