@@ -8,3 +8,6 @@ ragtest.py
 # Python junk
 __pycache__/
 *.pyc
+
+# Personal journal data — PRIVATE, never push (privacy-first!)
+journal.json
