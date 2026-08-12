@@ -32,9 +32,10 @@ def read_entries():
  except json.JSONDecodeError:
     print(" journal file is corrupted , do you want to fix it ?")
     return
- for entry in entries:
-        print(entry["text"])
-
+ entries = sorted(entries , key = lambda e : e["date"])
+ for i, entry in enumerate(entries, start=1):    # ← new
+    print(i, "-", entry["text"])
+ 
 
 
 def read_by_date():
@@ -50,6 +51,7 @@ def read_by_date():
                 found = True
         if not found:
             print("no entry for this date")
+    
 
 
 def chat_with_twin():
