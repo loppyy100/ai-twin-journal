@@ -1,2 +1,10 @@
-journal.json
+# Practice / scratch files (local only)
+test.py
+ragtest.py
+
+# Editor settings (local machine only)
+.vscode/
+
+# Python junk
 __pycache__/
+*.pyc
